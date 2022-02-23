@@ -76,14 +76,26 @@ function printQuote() {
     nextQuote = getRandomQuote();
   } else {
     currentQuote = nextQuote;
-    quoteBox.innerHTML = `
-    <p class="quote">${currentQuote.quote}</p>
-    <p class="source">${currentQuote.source}<span class="citation">${currentQuote.citation}</span>
-    <span class="year">${currentQuote.year}</span></p>
+    let newHTML = `
+      <p class="quote">${currentQuote.quote}</p>
+      <p class="source">${currentQuote.source}
     `;
+
+    if (currentQuote.citation !== null) {
+      newHTML += `<span class="citation">${currentQuote.citation}</span>`;
+    }
+
+    if (currentQuote.year !== null) {
+      newHTML += `<span class="year">${currentQuote.year}</span>`
+    }
+
+    newHTML += `</p>`;
+
+    quoteBox.innerHTML = newHTML;
   }
 }
 
+printQuote();
 
 /***
  * click event listener for the print quote button
